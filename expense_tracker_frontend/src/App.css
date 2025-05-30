@@ -1,9 +1,13 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  /* SpendWise Theme */
+  --primary: #2d9cdb;
+  --secondary: #f2f2f2;
+  --accent: #27ae60;
+  --base-dark: #212f3c; /* For background behind cards */
+  --base-light: #ffffff;
+  --text-color: #222;
+  --text-secondary: #666;
+  --border-color: #e0e0e0;
 }
 
 body {
