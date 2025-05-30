@@ -13,100 +13,246 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  background-color: var(--secondary);
   color: var(--text-color);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app {
+/* -- SpendWise Main Layout -- */
+
+.sw-app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--secondary);
 }
 
-.navbar {
-  background-color: var(--base-dark);
-  padding: 16px;
+.sw-header {
+  background: var(--primary);
+  color: white;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.sw-header-inner {
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.2rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sw-logo {
+  font-weight: 700;
+  font-size: 1.31rem;
+  letter-spacing: 0.02em;
+}
+
+.sw-main {
+  max-width: 450px;
+  margin: 20px auto 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Card styling for each section */
+.sw-card {
+  background: var(--base-light);
+  border-radius: 14px;
+  padding: 1.5rem 1.2rem;
+  box-shadow: 0 1px 6px 0 rgba(45, 156, 219, 0.04);
+  margin-bottom: 0.2rem;
+}
+
+.sw-section-title {
+  margin: 0 0 0.65rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+/* --- Expense Form --- */
+.sw-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sw-form-fields {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.sw-input {
+  flex: 1 1 130px;
+  font-size: 1rem;
+  padding: 9px 12px;
+  border: 1.3px solid var(--primary);
+  border-radius: 5px;
+  outline: none;
+  color: var(--text-color);
+  background: var(--secondary);
+  transition: border 0.2s;
+  margin-bottom: 0;
+}
+
+.sw-input:focus {
+  border-color: var(--accent);
+}
+
+.sw-btn {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 23px;
+  color: #fff;
+  background-color: var(--primary);
+  cursor: pointer;
+  transition: background 0.18s;
+  align-self: flex-end;
+}
+
+.sw-btn-accent {
+  background-color: var(--accent);
+}
+
+.sw-btn-accent:hover,
+.sw-btn-accent:focus {
+  background-color: #209150;
+}
+
+.sw-form-error {
+  color: #c03;
+  font-size: 0.96rem;
+  margin: 0.35rem 0 0 0;
+  font-weight: 500;
+}
+
+/* --- Total Spent --- */
+.sw-total-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 1.15rem 1.2rem;
+  background: linear-gradient(95deg, #2d9cdb 44%, #27ae60 100%);
+  color: #fff;
+  border-radius: 13px;
+  margin-top: 10px;
+  margin-bottom: 0.5rem;
+}
+.sw-total-label {
+  font-size: 1.03rem;
+  font-weight: 500;
+  opacity: 0.88;
+  margin-bottom: 0.25rem;
+}
+.sw-total-amount {
+  font-size: 2.17rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* --- Transaction List --- */
+.sw-tx-card {
+  padding-bottom: 0.7rem;
+}
+
+.sw-tx-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sw-tx-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 100;
+  border-bottom: 1.2px solid var(--border-color);
+  padding: 0.62rem 0;
+  gap: 9px;
 }
 
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo-symbol {
-  color: var(--base-light);
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
-  text-align: center;
+.sw-tx-data {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  align-items: flex-start;
+  flex-grow: 1;
+  min-width: 0;
 }
 
-.subtitle {
-  color: var(--base-light);
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-.title {
-  font-size: 3.5rem;
+.sw-tx-amount {
+  color: var(--accent);
   font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
+  font-size: 1.08rem;
+  margin-bottom: 1px;
+  margin-right: 4px;
 }
 
-.description {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 16px;
-}
-
-.btn {
-  background-color: var(--base-light);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+.sw-tx-desc {
   font-size: 1rem;
+  color: var(--text-color);
   font-weight: 500;
+  word-break: break-word;
+  max-width: calc(100vw - 150px);
+}
+
+.sw-tx-date {
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+}
+
+.sw-tx-delete {
+  color: #f13c3c;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  margin-left: 7px;
+  padding: 0;
+  transition: color 0.18s;
+  line-height: 1;
 }
 
-.btn:hover {
-  background-color: #7691ff;
+.sw-tx-delete:hover {
+  color: #960606;
 }
 
-.btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+.sw-empty-msg {
+  color: #999;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1.04rem;
+}
+
+/* Minimal mobile responsiveness */
+@media (max-width: 600px) {
+  .sw-header-inner,
+  .sw-main {
+    max-width: 98vw;
+    padding: 0.5rem 0.2rem;
+  }
+  .sw-card {
+    padding: 1rem 0.6rem;
+  }
+  .sw-form-fields {
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 }
